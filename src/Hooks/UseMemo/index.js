@@ -2,7 +2,7 @@ import React from 'react'
 
 const Memo = () => {
   return (
-    <div>Memo</div>
+    <div>useMemo</div>
   )
 }
 
