@@ -6,7 +6,6 @@ const Index = () => {
   const inputRef = useRef(null)
 
   const handleClick = () => {
-    console.log(inputRef.current.value);
     setValue(inputRef.current.value)
   }
   return (

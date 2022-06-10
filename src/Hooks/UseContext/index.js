@@ -1,16 +1,14 @@
-import { useState, createContext, useContext } from "react";
-import ReactDOM from "react-dom/client";
+import React, { createContext, useState } from 'react'
+import Login from './Login'
+import User from './User'
 
-const UserContext = createContext("testt");
-const TestContext = createContext("testtsss");
-
-const Component1=()=> {
-
-  const [user, setUser] = useState("jhon doe");
-  const testTwo = "hihihi  developer"
+export const userContext = createContext(null)
+ 
+const Index = () => {
+  const [user, setUser] = useState('')
   return (
-    <>
-      <div>
+    <userContext.Provider value={{user, setUser}}>
+    <div>
         <h2><u>USE CONTEXT :</u></h2>
             <div>
                 <p>
@@ -26,58 +24,11 @@ const Component1=()=> {
             </div>
             <hr></hr>
         </div>
-        
-    <UserContext.Provider value={user}>
-    <TestContext.Provider value={testTwo}>
-      <h1>{`Hello ${user}!`}</h1>
-      <h1>{`Hello ${testTwo}!`}</h1>
-      <Component2 user={user} />
-    </TestContext.Provider>
-    </UserContext.Provider>
-    </>
-  );
-}
-export default Component1
-
-const Component2=()=> {
-  const test = useContext(TestContext);
-  return (
-    <>
-      <h1>Component 2</h1>
-      <h2>{`Hello again! ${test}`}</h2>
-      <Component3 />
-    </>
-  );
+        <h5>This is parent...</h5>
+      <Login/>
+      <User/>
+    </userContext.Provider>
+  )
 }
 
-const Component3=()=> {
-  return (
-    <>
-      <h1>Component 3</h1>  
-      <Component4 />
-    </>
-  );
-}
-
-const Component4=()=> {
-  return (
-    <>
-      <h1>Component 4</h1>
-      <Component5 />
-    </>
-  );
-}
-
-const Component5=()=> {
-
-  const user = useContext(UserContext);
-  const test = useContext(TestContext);
-  return (
-        <>
-        
-          <h1>Component 5</h1>
-          <h2>{`Hello ${user} again! `}</h2>
-          <h2>{`Hello again! ${test}`}</h2>
-        </>
-  );
-}
+export default Index
